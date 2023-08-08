@@ -1,0 +1,91 @@
+<div class='row'>
+  <div class='col-md-6 col-xl-6 grid-margin stretch-card'>
+    <div class='card'>
+      <div class='card-header'>
+        <h5>Customer information</h5>
+      </div>
+      <div class='card-body'>
+
+        <form
+          style='text-align:right'
+          method='POST'
+          action='/checkout/{{invoiceId}}/pay'
+        >
+
+          <div class='row'>
+            <div class='col-12'>
+              <div class='input-group input-group-static'>
+                {{#with user}}
+                  {{#dataValues}}
+                    <label>Email</label>
+                    <input
+                      type='text'
+                      class='form-control'
+                      placeholder='Alec'
+                      onfocus='focused(this)'
+                      onfocusout='defocused(this)'
+                      value='{{email}}'
+                    />
+                  {{/dataValues}}
+                {{/with}}
+              </div>
+            </div>
+            <div class='col-12 mt-4'>
+              <button type='submit' class='btn btn-primary btn-lg'>Continue to
+                payment</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class='col-md-6 col-xl-6 grid-margin stretch-card'>
+    <div class='card'>
+      <div class='card-body'>
+        <div class='row'>
+          <div class='col-12'>
+            <div class='table-responsive'>
+              <table class='table text-right'>
+                <thead>
+                  <tr>
+                    <th scope='col' class='pe-2 text-start ps-2'>Plan</th>
+                    <th scope='col' class='pe-2'>Rate per month</th>
+                    <th scope='col' class='pe-2'>Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  {{#each invoiceItems}}
+                    {{#dataValues}}
+                      <tr>
+
+                        {{#with subscriptionPlan}}
+                          {{#dataValues}}
+                            <td class='text-start'>{{name}}</td>
+                            <td class='ps-4'>$ {{monthPrice}}</td>
+                          {{/dataValues}}
+                        {{/with}}
+                        <td class='ps-4'>$ {{price}}</td>
+                      </tr>
+                    {{/dataValues}}
+                  {{/each}}
+
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th></th>
+                    <th class='h5 ps-4'>Total</th>
+                    <th colspan='1' class='text-right h5 ps-4'>$
+                      {{totalAmount}}</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

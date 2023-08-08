@@ -1,0 +1,102 @@
+<script
+  src='https://commerce.coinbase.com/v1/checkout.js?onload=SOME_CALLBACK_FUNCTION'
+></script>
+
+<script>
+  BuyWithCrypto.registerCallback('onSuccess', function(e){});
+  BuyWithCrypto.registerCallback('onFailure', function(e){ });
+  BuyWithCrypto.registerCallback('onPaymentDetected', function(e){});
+</script>
+
+<div>
+  <a
+    class='buy-with-crypto'
+    data-custom='MY_CUSTOM_DATA'
+    href='https://commerce.coinbase.com/checkout/6da189f179bc31'
+  >
+    <span>This is a button.</span>
+  </a>
+  <script src='https://commerce.coinbase.com/v1/checkout.js'></script>
+</div>
+
+<div class='row'>
+  <div class='col-md-6 col-xl-6 grid-margin stretch-card'></div>
+
+  <div class='col-md-6 col-xl-6 grid-margin stretch-card'>
+    <div class='card'>
+      <div class='card-body'>
+        <div class='row'>
+          <div class='col-12'>
+            <h5>Invoice {{invoiceCode}}</h5>
+            <div class='col-12'>
+              <div class='input-group input-group-static'>
+                {{#with user}}
+                  {{#dataValues}}
+                    <label>Email</label>
+                    <input
+                      type='text'
+                      class='form-control'
+                      placeholder='Alec'
+                      onfocus='focused(this)'
+                      onfocusout='defocused(this)'
+                      value='{{email}}'
+                    />
+                  {{/dataValues}}
+                {{/with}}
+              </div>
+            </div>
+
+          </div>
+
+          <div class='col-12'>
+            <h5 class='mt-3'>Information</h5>
+            <div class='table-responsive'>
+              <table class='table text-right'>
+                <thead>
+                  <tr>
+                    <th scope='col' class='pe-2 text-start ps-2'>Plan</th>
+                    <th scope='col' class='pe-2'>Rate per month</th>
+                    <th scope='col' class='pe-2'>Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  {{#each invoiceItems}}
+                    {{#dataValues}}
+                      <tr>
+
+                        {{#with subscriptionPlan}}
+                          {{#dataValues}}
+                            <td class='text-start'>{{name}}</td>
+                            <td class='ps-4'>$ {{monthPrice}}</td>
+                          {{/dataValues}}
+                        {{/with}}
+                        <td class='ps-4'>$ {{price}}</td>
+                      </tr>
+                    {{/dataValues}}
+                  {{/each}}
+
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th></th>
+                    <th class='h5 ps-4'>Total</th>
+                    <th colspan='1' class='text-right h5 ps-4'>$
+                      {{totalAmount}}</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <div class='col-12 mt-4 text-right'>
+              <a class='buy-with-crypto' href='{{checkoutUrl}}' target='_blank'>
+                <button class='btn btn-primary btn-lg'>Pay with Coinbase</button>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

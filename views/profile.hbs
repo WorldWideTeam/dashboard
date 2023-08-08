@@ -1,0 +1,42 @@
+<div class='row'>
+  <div
+    class='col-xl-5 col-lg-6 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5'
+  >
+    <div
+      class='card d-flex blur justify-content-center shadow-lg my-sm-0 my-sm-6 mt-8 mb-5'
+    >
+      <div class='card-body'>
+        <h5 class='font-weight-normal text-info text-gradient'>Profile</h5>
+
+        {{#with user}}
+          <form id='contact-form' method='post' autocomplete='off'>
+            <div class='card-body p-0 my-3'>
+              <div class='row'>
+
+                <div class='mb-3'>
+                  <label for='username' class='form-label'>Username</label>
+                  <input
+                    value='{{username}}'
+                    class='form-control'
+                    disabled
+                    id='username'
+                  />
+                </div>
+
+                <div class='mb-3'>
+                  <label for='username' class='form-label'>Email</label>
+                  <input
+                    value='{{email}}'
+                    class='form-control'
+                    disabled
+                    id='username'
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+        {{/with}}
+      </div>
+    </div>
+  </div>
+</div>
